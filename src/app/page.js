@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <main>
-      home page
+    <main className="main">
+      User Not Logged In
     </main>
   );
 }

@@ -38,3 +38,10 @@ body {
   font-size: 20px;
   font-weight: 500;
 }
+
+.main{
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
