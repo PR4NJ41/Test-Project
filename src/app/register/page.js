@@ -31,6 +31,7 @@ const Register = () => {
     });
     setGender("");
     setSkills("");
+    setErrorMsg("");
 	}
 
   const handleSubmit = (e) => {
