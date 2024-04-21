@@ -3,45 +3,96 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+	.text-balance {
+		text-wrap: balance;
+	}
 }
 
 body {
-  background-color: antiquewhite;
+	background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
 }
 
-.navbar{
-  padding: 0px 40px;
-  display: flex;
-  flex-direction: row;
-  border-bottom: 1px solid black;
+.navbar {
+	padding: 0px 40px;
+	display: flex;
+	flex-direction: row;
+	border-bottom: 1px solid black;
+	background: antiquewhite;
 }
 
 .navbar > li {
-  padding: 20px;
-  font-size: 20px;
-  font-weight: 500;
+	padding: 20px;
+	font-size: 20px;
+	font-weight: 500;
 }
 
-.main{
-  height: 80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.footer {
+	padding: 0px 40px;
+	display: flex;
+	flex-direction: row;
+	border-bottom: 1px solid black;
+	background: #0019274a;
+	justify-content: center;
+	color: white;
+}
+.footer > li {
+	padding: 20px;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.registerMain {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background-position: center;
+}
+
+.homeContainer {
+	background-color: white;
+	padding: 5px 70px;
+	border-radius: 10px;
+	width: 500px;
+	display: flex;
+	height: 350px;
+	justify-content: center;
+	align-items: center;
+}
+
+h1 {
+	text-align: center;
+	font-size: 20px;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+
+.infoItem, .notLoggedIn {
+	margin-bottom: 5px;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.logoutBtn {
+	color: white;
+	background-color: #f44336;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	margin-top: 30px;
 }

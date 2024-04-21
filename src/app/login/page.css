@@ -3,7 +3,6 @@
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
-	background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
 	background-position: center;
 }
 
@@ -73,10 +72,11 @@ input[type="radio"] {
 	margin: 10px 0px;
 }
 
-.btnContainer {
+.loginBtnContainer {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 40px;
+	margin-top: 30px;
 }
 
 .submitBtn {

@@ -1,57 +1,86 @@
-"use client"
-import { useState } from "react"
-import "./page.css"
+"use client";
+import React from "react";
+import { useState } from "react";
+import "./page.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 const Register = () => {
-	const userNameError = "Username should be 4-32 characters long"
-	const passwordError = "Password must be alphanumeric with at least one special character."
+	const userNameError = "Username should be 4-32 characters long";
+	const passwordError = "Password must be alphanumeric with at least one special character.";
 
-	const [errorMsg, setErrorMsg] = useState("")
-	const [usernameFocus, setUsernameFocus] = useState(false)
-	const [passwordFocus, setPasswordFocus] = useState(false)
-	const [gender, setGender] = useState("")
-	const [skills, setSkills] = useState("")
+	const [errorMsg, setErrorMsg] = useState("");
+	const [usernameFocus, setUsernameFocus] = useState(false);
+	const [passwordFocus, setPasswordFocus] = useState(false);
+	const [gender, setGender] = useState("");
+	const [skills, setSkills] = useState("");
 
 	const [values, setValues] = useState({
 		username: "",
 		password: "",
-	})
+	});
 
-	const onChange = (e) => {
-		setValues({ ...values, [e.target.name]: e.target.value })
-		e.preventDefault()
-	}
+	const onChange = async (e) => {
+		setValues({ ...values, [e.target.name]: e.target.value });
+		e.preventDefault();
+	};
+
+	const toastOptions = {
+		position: "top-right",
+		autoClose: 5000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: false,
+		draggable: false,
+		progress: undefined,
+		theme: "colored",
+	};
 
 	const resetForm = () => {
-		setUsernameFocus(false)
-		setPasswordFocus(false)
+		setUsernameFocus(false);
+		setPasswordFocus(false);
 		setValues({
 			username: "",
 			password: "",
-		})
-		setGender("")
-		setSkills("")
-		setErrorMsg("")
-	}
+		});
+		setGender("");
+		setSkills("");
+		setErrorMsg("");
+	};
 
-	const handleSubmit = (e) => {
-		e.preventDefault()
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 		if (gender === "") {
-			setErrorMsg("Please select a gender.")
-			return
+			setErrorMsg("Please select a gender.");
+			return;
 		}
 		if (!skills) {
-			setErrorMsg("Please select at least one skill.")
-			return
+			setErrorMsg("Please select at least one skill.");
+			return;
 		}
-		console.log(values["username"])
-		console.log(values["password"])
-		console.log(skills)
-		console.log(gender)
-	}
+
+		try {
+			await addDoc(collection(db, "users"), {
+				username: values["username"],
+				password: values["password"],
+				skills: skills,
+				gender: gender,
+			});
+			toast.info("You're logged in successfully", toastOptions);
+		} catch (error) {
+			alert(error.message);
+		}
+		localStorage.setItem("username", values["username"]);
+		localStorage.setItem("skills", skills);
+		localStorage.setItem("gender", gender);
+		resetForm();
+	};
 
 	return (
 		<div className="registerMain">
+			<ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
 			<form onSubmit={handleSubmit}>
 				<br />
 				<h1>User data</h1>
@@ -106,7 +135,7 @@ const Register = () => {
 				</div>
 			</form>
 		</div>
-	)
-}
+	);
+};
 
-export default Register
+export default Register;
